@@ -1,46 +1,30 @@
--- alx_book_store.sql
+:: 1. Authors table & columns
+findstr /I /C:"CREATE TABLE AUTHORS" alx_book_store.sql
+findstr /I /C:"AUTHOR_ID"             alx_book_store.sql
+findstr /I /C:"AUTHOR_NAME"           alx_book_store.sql
 
-CREATE DATABASE IF NOT EXISTS alx_book_store;
-USE alx_book_store;
+:: 2. Books table & foreign key to Authors
+findstr /I /C:"CREATE TABLE BOOKS"    alx_book_store.sql
+findstr /I /C:"BOOK_ID"               alx_book_store.sql
+findstr /I /C:"TITLE"                 alx_book_store.sql
+findstr /I /C:"AUTHOR_ID"             alx_book_store.sql
+findstr /I /C:"FOREIGN KEY.*AUTHOR_ID" alx_book_store.sql
 
--- Authors table
-CREATE TABLE AUTHORS (
-  AUTHOR_ID INT AUTO_INCREMENT PRIMARY KEY,
-  AUTHOR_NAME VARCHAR(215) NOT NULL
-);
+:: 3. Customers table
+findstr /I /C:"CREATE TABLE CUSTOMERS" alx_book_store.sql
+findstr /I /C:"CUSTOMER_ID"            alx_book_store.sql
+findstr /I /C:"CUSTOMER_NAME"          alx_book_store.sql
 
--- Books table
-CREATE TABLE BOOKS (
-  BOOK_ID INT AUTO_INCREMENT PRIMARY KEY,
-  TITLE VARCHAR(130) NOT NULL,
-  AUTHOR_ID INT NOT NULL,
-  PRICE DOUBLE,
-  PUBLICATION_DATE DATE,
-  FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHORS(AUTHOR_ID)
-);
+:: 4. Orders table & foreign key to Customers
+findstr /I /C:"CREATE TABLE ORDERS"    alx_book_store.sql
+findstr /I /C:"ORDER_ID"               alx_book_store.sql
+findstr /I /C:"CUSTOMER_ID"            alx_book_store.sql
+findstr /I /C:"FOREIGN KEY.*CUSTOMER_ID" alx_book_store.sql
 
--- Customers table
-CREATE TABLE CUSTOMERS (
-  CUSTOMER_ID INT AUTO_INCREMENT PRIMARY KEY,
-  CUSTOMER_NAME VARCHAR(215) NOT NULL,
-  EMAIL VARCHAR(215) NOT NULL,
-  ADDRESS TEXT
-);
-
--- Orders table
-CREATE TABLE ORDERS (
-  ORDER_ID INT AUTO_INCREMENT PRIMARY KEY,
-  CUSTOMER_ID INT NOT NULL,
-  ORDER_DATE DATE,
-  FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
-);
-
--- Order_Details table
-CREATE TABLE ORDER_DETAILS (
-  ORDERDETAILID INT AUTO_INCREMENT PRIMARY KEY,
-  ORDER_ID INT NOT NULL,
-  BOOK_ID INT NOT NULL,
-  QUANTITY DOUBLE,
-  FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID),
-  FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
-);
+:: 5. Order_Details table & FKs to Orders and Books
+findstr /I /C:"CREATE TABLE ORDER_DETAILS" alx_book_store.sql
+findstr /I /C:"ORDERDETAILID"               alx_book_store.sql
+findstr /I /C:"ORDER_ID"                    alx_book_store.sql
+findstr /I /C:"BOOK_ID"                     alx_book_store.sql
+findstr /I /C:"FOREIGN KEY.*ORDER_ID"       alx_book_store.sql
+findstr /I /C:"FOREIGN KEY.*BOOK_ID"        alx_book_store.sql
