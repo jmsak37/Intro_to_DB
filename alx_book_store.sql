@@ -16,8 +16,7 @@ CREATE TABLE Books (
   author_id INT NOT NULL,
   price DOUBLE,
   publication_date DATE,
-  FOREIGN KEY (author_id)
-    REFERENCES Authors(author_id)
+  FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
 -- Customers table
@@ -33,8 +32,7 @@ CREATE TABLE Orders (
   order_id INT AUTO_INCREMENT PRIMARY KEY,
   customer_id INT NOT NULL,
   order_date DATE,
-  FOREIGN KEY (customer_id)
-    REFERENCES Customers(customer_id)
+  FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
 -- Order_Details table
@@ -43,8 +41,6 @@ CREATE TABLE Order_Details (
   order_id INT NOT NULL,
   book_id INT NOT NULL,
   quantity DOUBLE,
-  FOREIGN KEY (order_id)
-    REFERENCES Orders(order_id),
-  FOREIGN KEY (book_id)
-    REFERENCES Books(book_id)
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+  FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
